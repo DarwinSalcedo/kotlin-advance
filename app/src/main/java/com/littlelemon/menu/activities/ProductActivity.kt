@@ -5,15 +5,21 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.littlelemon.menu.ui.screens.ProductDetails
+import com.littlelemon.menu.R
 import com.littlelemon.menu.data.ProductItem
+import com.littlelemon.menu.ui.screens.ProductDetails
 
 class ProductActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val title = intent.getStringExtra(EXTRA_PRODUCT_TITLE_KEY)?:""
+        val price = intent.getDoubleExtra(EXTRA_PRODUCT_PRICE_KEY,0.0)
+        val category = intent.getStringExtra(EXTRA_PRODUCT_CATEGORY_KEY)?:""
+        val image = intent.getIntExtra(EXTRA_PRODUCT_IMAGE_KEY, R.drawable.not_found_image)
         val productItem =
-            ProductItem("", 0.0, "", -1)//todo replace with the passed values from intent
+            ProductItem(title, price, category, image)
         setContent { ProductDetails(productItem) }
     }
 
