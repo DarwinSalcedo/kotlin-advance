@@ -1,4 +1,4 @@
-package com.littlelemon.menu
+package com.littlelemon.menu.activities
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.view.MenuCompat
+import com.littlelemon.menu.domain.FilterHelper
+import com.littlelemon.menu.domain.FilterType
+import com.littlelemon.menu.data.ProductItem
+import com.littlelemon.menu.data.Products
+import com.littlelemon.menu.ProductsGrid
+import com.littlelemon.menu.R
+import com.littlelemon.menu.domain.SortHelper
+import com.littlelemon.menu.data.SortType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 

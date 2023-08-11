@@ -1,4 +1,6 @@
-package com.littlelemon.menu
+package com.littlelemon.menu.domain
+
+import com.littlelemon.menu.data.ProductItem
 
 class FilterHelper {//TODO create a FilterHelperTest and write a unit test for filterProducts
 

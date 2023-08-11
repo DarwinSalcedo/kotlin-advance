@@ -1,8 +1,10 @@
-package com.littlelemon.menu
+package com.littlelemon.menu.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.littlelemon.menu.ProductDetails
+import com.littlelemon.menu.data.ProductItem
 
 class ProductActivity : ComponentActivity() {
 

@@ -1,4 +1,7 @@
-package com.littlelemon.menu
+package com.littlelemon.menu.domain
+
+import com.littlelemon.menu.data.ProductItem
+import com.littlelemon.menu.data.SortType
 
 class SortHelper {
 

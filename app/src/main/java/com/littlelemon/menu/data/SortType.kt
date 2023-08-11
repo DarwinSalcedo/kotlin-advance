@@ -1,4 +1,4 @@
-package com.littlelemon.menu
+package com.littlelemon.menu.data
 
 sealed class SortType {
     object Alphabetically : SortType()
