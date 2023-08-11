@@ -9,41 +9,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.view.MenuCompat
-import com.littlelemon.menu.domain.FilterHelper
-import com.littlelemon.menu.domain.FilterType
-import com.littlelemon.menu.data.ProductItem
-import com.littlelemon.menu.data.Products
 import com.littlelemon.menu.ProductsGrid
 import com.littlelemon.menu.R
-import com.littlelemon.menu.domain.SortHelper
+import com.littlelemon.menu.data.ProductItem
+import com.littlelemon.menu.data.Products
 import com.littlelemon.menu.data.SortType
+import com.littlelemon.menu.domain.FilterHelper
+import com.littlelemon.menu.domain.FilterType
+import com.littlelemon.menu.domain.ProductsHelper
+import com.littlelemon.menu.domain.ProductsWarehouse
+import com.littlelemon.menu.domain.SortHelper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
 class MainActivity : ComponentActivity() {
 
-    val productsList = mutableListOf(
-        ProductItem("Black tea", 3.00, "Drinks", R.drawable.black_tea),
-        ProductItem("Green tea", 3.00, "Drinks", R.drawable.green_tea),
-        ProductItem("Espresso", 5.00, "Drinks", R.drawable.espresso),
-        ProductItem("Cappuccino", 8.00, "Drinks", R.drawable.cappuccino),
-        ProductItem("Latte", 8.00, "Drinks", R.drawable.latte),
-        ProductItem("Mocha", 10.00, "Drinks", R.drawable.mocha),
-        ProductItem("Boeuf bourguignon", 15.00, "Food", R.drawable.boeuf_bourguignon),
-        ProductItem("Bouillabaisse", 20.00, "Food", R.drawable.bouillabaisse),
-        ProductItem("Lasagna", 15.00, "Food", R.drawable.lasagna),
-        ProductItem("Onion soup", 12.00, "Food", R.drawable.onion_soup),
-        ProductItem("Salmon en papillote", 25.00, "Food", R.drawable.salmon_en_papillote),
-        ProductItem("Quiche Lorraine", 17.00, "Dessert", R.drawable.quiche_lorraine),
-        ProductItem("Custard tart", 14.00, "Dessert", R.drawable.custard_tart),
-        ProductItem("Croissant", 7.00, "Dessert", R.drawable.croissant),
-    )
-
     private val productsState: MutableStateFlow<Products> =
-        MutableStateFlow(Products(productsList))
+        MutableStateFlow(Products(emptyList()))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ProductsWarehouse.addProductList(ProductsHelper.productsList)
+        productsState.value = Products(ProductsWarehouse.getAllProducts())
         setContent { InitUI() }
     }
 
@@ -75,7 +62,7 @@ class MainActivity : ComponentActivity() {
                 Products(
                     SortHelper().sortProducts(
                         type,
-                        productsList
+                        ProductsWarehouse.getAllProducts()
                     )
                 )
             }
@@ -91,7 +78,7 @@ class MainActivity : ComponentActivity() {
                 Products(
                     FilterHelper().filterProducts(
                         type,
-                        productsList
+                        ProductsWarehouse.getAllProducts()
                     )
                 )
             }
