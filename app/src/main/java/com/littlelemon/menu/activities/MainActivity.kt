@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun startProductActivity(productItem: ProductItem) {
-        ProductActivity.start(this.applicationContext, productItem)
+        ProductActivity.start(this, productItem)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
