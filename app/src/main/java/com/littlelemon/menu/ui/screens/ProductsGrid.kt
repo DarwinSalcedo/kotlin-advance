@@ -22,7 +22,7 @@ import com.littlelemon.menu.data.Products
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ProductsGrid(products: Products) {
+fun ProductsGrid(products: Products,clickEvent : (ProductItem)->Unit) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(count = 2),
         contentPadding = PaddingValues(16.dp),
@@ -41,7 +41,7 @@ fun ProductsGrid(products: Products) {
                         contentDescription = productItem.title,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.clickable {
-                            //TODO start ProductActivity and pass the productItem details
+                            clickEvent.invoke(productItem)
                         }
                     )
                     Text(text = productItem.title)

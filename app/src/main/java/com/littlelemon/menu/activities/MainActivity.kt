@@ -37,11 +37,11 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun InitUI() {
         val products by productsState.collectAsState()
-        ProductsGrid(products = products)
+        ProductsGrid(products = products) { productItem -> startProductActivity(productItem) }
     }
 
     private fun startProductActivity(productItem: ProductItem) {
-        //TODO instantiate intent and pass extra parameter from product
+        ProductActivity.start(this.applicationContext, productItem)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
